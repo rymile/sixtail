@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
-const port = 3001;
+const port = 3000;
 
 // const router = require('./routes');
 

@@ -5,11 +5,21 @@ module.exports = {
     await queryInterface.createTable('Auths', {
       boardId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Boards",
+          key: "boardId",
+        },
+        onDelete: "CASCADE",
       },
       authId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "userId",
+        },
+        onDelete: "CASCADE",
       },
       createdAt: {
         allowNull: false,
