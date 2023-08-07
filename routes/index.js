@@ -1,16 +1,19 @@
-// const express = require('express');
-// const router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-// const boardsRouter = require("./boardRoute");
-// router.use("/", boardsRouter)
+const usersRouter = require('./usersRoute');
+router.use('/', usersRouter);
 
-// const columnsRouter = require("./columnRoute");
-// router.use("/", columnsRouter)
+// const boardsRouter = require('./boardRoute');
+// router.use('/', boardsRouter);
 
-// const cardManagesRouter = require("./cardManagesRoute");
-// router.use("/", cardManagesRouter)
+// const columnsRouter = require('./columnRoute');
+// router.use('/', columnsRouter);
 
-// const cardCommentsRouter = require("./cardCommentsRoute");
-// router.use("/", cardCommentsRouter)
+// const cardManagesRouter = require('./cardManagesRoute');
+// router.use('/', cardManagesRouter);
 
-// module.exports = router;
+// const cardCommentsRouter = require('./cardCommentsRoute');
+// router.use('/', cardCommentsRouter);
+
+module.exports = router;
