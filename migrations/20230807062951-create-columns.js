@@ -7,30 +7,34 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       boardId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "Boards",
-          key: "boardId",
+          model: 'Boards',
+          key: 'boardId',
         },
-        onDelete: "CASCADE",
+        onDelete: 'CASCADE',
       },
       columnName: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Columns');
-  }
+  },
 };
