@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Auths extends Model {
     /**
@@ -12,33 +10,37 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // Users와 Auths는 일대다 관계
       this.belongsTo(models.Users, {
-        targetKey: "userId",
-        foreignKey: "authId",
-      })
+        targetKey: 'userId',
+        foreignKey: 'authId',
+      });
 
       // Boards와 Auths는 일대다 관계
       this.belongsTo(models.Boards, {
-        targetKey: "boardId",
-        foreignKey: "boardId",
-      })
+        targetKey: 'boardId',
+        foreignKey: 'boardId',
+      });
     }
   }
-  Auths.init({
-    boardId: {
-      allowNull: false,
-      type: DataTypes.INTEGER
+  Auths.init(
+    {
+      boardId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      authId: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
     },
-    authId: {
-      allowNull: false,
-      type: DataTypes.INTEGER
-    },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE
+    {
+      sequelize,
+      modelName: 'Auths',
     }
-  }, {
-    sequelize,
-    modelName: 'Auths',
-  });
+  );
   return Auths;
 };
