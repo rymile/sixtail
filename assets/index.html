@@ -1,48 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sixtail todoList</title>
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
     <p id="skipNav" class="hide"><a href="./index.html">본문 바로가기</a></p>
 
-    <!-- header -->
-    <header id="header">
+    <div id="wrap">
+      <!-- header -->
+      <header id="header">
         <div class="inner">
-            <h1><a href="./index.html">SixTail Board</a></h1>
+          <h1>
+            <a href="./index.html"><img src="" alt="" />sixtailBoard</a>
+          </h1>
         </div>
-    </header>
+      </header>
 
-    <!-- mainVisual -->
-    <section id="mainVisual">mainVisual Part</section>
-
-    <!-- main -->
-    <main id="container" class="main">
+      <!-- main -->
+      <main id="container" class="main">
         <section id="content">
-            <div class="work w1">
-                <div class="inner">내용1</div>
+          <div class="work">
+            <div class="inner">
+              <ul class="board">
+                <li>
+                  <a href="#">
+                    <h3>to do</h3>
+                    <p>content</p>
+                  </a>
+                  <button class="addBtn">+ Add a card</button>
+                </li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+              </ul>
             </div>
-            <div class="work w2">
-                <div class="inner">내용2</div>
-            </div>
-            <div class="work w3">
-                <div class="inner">내용3</div>
-            </div>
+          </div>
+          <div class="work w2">
+            <div class="inner">오늘 할 일은 오늘 끝내자!</div>
+          </div>
+          <div class="work w3">
+            <div class="inner">내용3</div>
+          </div>
         </section>
-    </main>
+      </main>
 
-    <!-- footer -->
-    <footer id="footer">
+      <!-- footer -->
+      <footer id="footer">
         <div class="inner">
-            <p>made by sixTail</p>
+          <p>made by sixTail</p>
         </div>
-    </footer>
+      </footer>
+    </div>
 
     <!-- script part -->
     <script src="./main.js"></script>
-</body>
+  </body>
 </html>

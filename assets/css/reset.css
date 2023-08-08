@@ -70,40 +70,57 @@ table {
 
 
 /* common css =========================================== */
+/* header */
 #header {
     width: 100%;
-    background: greenyellow;
+    background: #666;
+    padding: 10px;
 }
 #header .inner {
-    height: 30px;
+    height: 25px;
 }
 #header h1 {}
 #header h1 a { 
-    color: #333;
+    color: #fff;
     font-size: 16px; 
     font-weight: 600; 
-    transition: 0.5s;
+    transition: 0.3s;
 }
-#header h1 a:hover { font-size: 17px;}
+#header h1 a:hover { 
+    background: #999;
+    border-radius: 7px;
+    padding: 3px;
+}
 
-#mainVisual {
-    width: 100%;
-    height: 150px;
-    background: #ededed;
+/* main - common css */
+#container { 
+    height: 100%;
 }
-.main {
-    width: 100%;
-    height: 500px;
-    background: #48afef;
+#container::after { 
+    content: ""; 
+    display: block; 
+    clear: both;
 }
+#content {
+    width: 100%;
+    padding: 20px;
+    color: #fff;
+}
+
+/* footer */
 #footer {
     width: 100%;
-    height: 50px;
     background: #777;
 
     position: fixed;
     bottom: 0;
 }
+#footer .inner {
+    height: 40px;
+}
 #footer p {
     color: #fff;
+    text-align: right;
+    margin-right: 15px;
+    font-size: 13px;
 }
