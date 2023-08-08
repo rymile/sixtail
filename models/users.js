@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
 
       // Users와 Auths는 일대다 관계
       this.hasMany(models.Auths, {
-        sourceKey: 'userId',
-        foreignKey: 'authId',
+        sourceKey: 'userId', // 변경 전: userId
+        foreignKey: 'authId', // 변경 전: authId
       });
     }
   }

@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // Users와 Auths는 일대다 관계
       this.belongsTo(models.Users, {
-        targetKey: 'userId',
-        foreignKey: 'authId',
+        targetKey: 'userId', // authId로 변경되어야 함. 변경 전: userId
+        foreignKey: 'authId', //userId로 변경되어야 함. 변경 전: authId
       });
 
       // Boards와 Auths는 일대다 관계
@@ -23,15 +23,23 @@ module.exports = (sequelize, DataTypes) => {
   }
   Auths.init(
     {
-      boardId: {
+      authId: {
+        // authId로 변경하고 primarykey 설정 필요 변경 전: boardId, primarykey 항목 없음
         allowNull: false,
+        primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      authId: {
+      boardId: {
+        // boardId로 변경 필요 변경 전: authId
         allowNull: false,
         type: DataTypes.INTEGER,
       },
       createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
         allowNull: false,
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
