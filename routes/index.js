@@ -4,16 +4,16 @@ const router = express.Router();
 const usersRouter = require('./usersRoute');
 router.use('/', usersRouter);
 
-// const boardsRouter = require('./boardRoute');
-// router.use('/', boardsRouter);
+const boardsRouter = require('./boardRoute');
+router.use('/', boardsRouter);
+
+// const authRouter = require('./authRoute');
+// router.use('/', authRouter);
 
 // const columnsRouter = require('./columnRoute');
 // router.use('/', columnsRouter);
 
 // const cardManagesRouter = require('./cardManagesRoute');
 // router.use('/', cardManagesRouter);
-
-// const cardCommentsRouter = require('./cardCommentsRoute');
-// router.use('/', cardCommentsRouter);
 
 module.exports = router;
