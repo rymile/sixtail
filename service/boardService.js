@@ -13,6 +13,8 @@ class BoardsService {
 
       const createBoardData = await this.boardsRepository.createBoard(boardTitle, boardContent, userId);
 
+      // const creatorUserId = userId;
+
       return createBoardData;
     } catch (error) {
       throw new ApiError('서버 에러가 발생했습니다.', 411);
@@ -22,19 +24,19 @@ class BoardsService {
   putBoard = async (boardId, boardTitle, boardContent, userId) => {
     try {
       if (!boardContent || !boardTitle) {
-        throw new ApiError('보드 제목, 내용, 사용자 ID를 입력해야 합니다.', 411);
+        throw new ApiError('보드 제목, 내용을 입력해야 합니다.', 411);
       }
 
-      const board = await this.boardsRepository.findBoard(boardId);
+      const board = await this.boardsRepository.getBoard(boardId);
 
       if (!board) {
         throw new ApiError('보드를 찾을 수 없습니다.', 411);
       }
-      // if (board.userId !== userId) {
-      //   throw new ApiError('보드 수정 권한이 없습니다.', 411);
-      // }
-      // 레포지토리 로직 수행
+      if (board.userId !== userId) {
+        throw new ApiError('보드 생성자가 아닙니다.', 411);
+      }
       await this.boardsRepository.putBoard(boardId, boardTitle, boardContent);
+
       return {
         boardId: boardId,
         boardTitle: boardTitle,
@@ -43,32 +45,37 @@ class BoardsService {
         message: '보드 수정에 성공했습니다.',
       };
     } catch (error) {
-      throw new ApiError('캐치에러', 411);
+      throw new ApiError(error.message, 411);
     }
-    // 해당하는 postId가 없을 경우 게시글 수정 제한
   };
 
   // 수정과 동일한 로직
-  deleteBoard = async (boardId) => {
+  deleteBoard = async (boardId, userId) => {
     try {
-      if (!boardId) {
-        throw new ApiError('보드가 생성되지 않았습니다.', 411);
+      const board = await this.boardsRepository.getBoard(boardId);
+
+      if (!board) {
+        throw new ApiError('보드를 찾을 수 없습니다.', 411);
       }
-      const deleteData = await this.boardsRepository.deleteBoard(boardId);
-      // 레포지토리 로직이 수행되었을 때 deleteDate의 결과값이 1일 경우 게시물의 삭제를 진행
-      if (deleteData === 1) {
-        return { message: '보드가 삭제되었습니다.' };
-      } else {
-        throw new ApiError('보드 삭제에 실패했습니다.', 411);
+      if (board.userId !== userId) {
+        console.log('board.userId', board.userId);
+        console.log('userId', userId);
+        throw new ApiError('보드 생성자가 아닙니다.', 411);
       }
+      await this.boardsRepository.deleteBoard(boardId);
+
+      return {
+        status: 200,
+        message: '보드 삭제에 성공했습니다.',
+      };
     } catch (error) {
-      throw new ApiError('서버 에러가 발생했습니다.', 411);
+      throw new ApiError(error.message, 411);
     }
   };
 
-  findBoard = async (boardId) => {
+  getBoard = async (boardId) => {
     try {
-      const board = await this.boardsRepository.findBoard(boardId);
+      const board = await this.boardsRepository.getBoard(boardId);
       if (!board) {
         throw new ApiError('보드가 없습니다', 411);
       }
@@ -85,23 +92,51 @@ class BoardsService {
     }
   };
 
-  grantBoardPermission = async (boardId, creatorUserId, loginId, authId, userId) => {
-    // 보드에 권한을 부여하고 결과를 반환하는 레포지토리 메서드 호출
+  // grantBoardPermission = async (boardId, userId, loginId, authId, creatorUserId) => {
+  //   // 보드에 권한을 부여하고 결과를 반환하는 레포지토리 메서드 호출
+  //   try {
+  //     const grantedPermission = await this.boardsRepository.grantBoardPermission(
+  //       boardId,
+  //       userId,
+  //       loginId,
+  //       authId,
+  //       creatorUserId
+  //     );
+  //     return grantedPermission;
+  //   } catch (error) {
+  //     throw new ApiError(error.message, 409);
+  //   }
+  // };
+
+  grantPermissionAndUpdate = async (boardId, userIdToGrant, creatorUserId) => {
     try {
-      const grantedPermission = await this.boardsRepository.addBoardPermission(
+      const board = await this.boardsRepository.getBoard(boardId);
+
+      if (!board) {
+        throw new ApiError('보드를 찾을 수 없습니다.', 404);
+      }
+
+      if (board.userId !== creatorUserId) {
+        throw new ApiError('보드 생성자만 권한을 부여할 수 있습니다.', 403);
+      }
+
+      // 권한을 부여하고 결과를 반환하는 레포지토리 메서드 호출
+      const grantedPermission = await this.boardsRepository.grantPermissionAndUpdate(
         boardId,
-        userId,
-        loginId,
-        authId,
+        userIdToGrant,
         creatorUserId
       );
-      return grantedPermission;
+
+      // 보드를 업데이트한 결과 반환
+      return {
+        status: 200,
+        message: '권한 부여 및 보드 업데이트 완료',
+        grantedPermission,
+      };
     } catch (error) {
-      throw new ApiError(error.message, 409);
+      throw new ApiError(error.message, error.statusCode || 500);
     }
   };
-
-  // 새 로직
 }
 
 module.exports = BoardsService;
