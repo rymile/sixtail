@@ -1,16 +1,31 @@
 const { Boards, Auths } = require('../models');
+const { sequelize } = require('../models');
 
 class BoardsRepository {
   //생성
   createBoard = async (boardTitle, boardContent, userId) => {
-    const createBoardData = await Boards.create({
-      boardTitle,
-      boardContent,
-      userId,
-    });
-    return createBoardData;
-  };
+    try {
+      await sequelize.transaction(async (t) => {
+        const createBoardData = await Boards.create({
+          boardTitle,
+          boardContent,
+          userId,
+          transaction: t,
+        });
 
+        const boardId = createBoardData.boardId;
+        const authId = userId;
+
+        await Auths.create({
+          boardId,
+          authId,
+          transaction: t,
+        });
+      });
+    } catch (Error) {
+      throw Error;
+    }
+  };
   //수정
   putBoard = async (boardId, boardTitle, boardContent) => {
     const modifyData = await Boards.update(
@@ -40,47 +55,24 @@ class BoardsRepository {
     return deletedData;
   };
 
+  getAuth = async (userId, boardId) => {
+    const auth = await Auths.findOne({ where: { authId: userId, boardId: boardId } });
+    return auth;
+  };
+
   //보드조회
-  getBoard = async (boardId) => {
+  getBoardAuth = async (boardId) => {
     const board = await Boards.findOne({ where: { boardId } });
     return board;
   };
 
-  // grantBoardPermission = async (boardId, userId, loginId, authId, creatorUserId) => {
-  //   // 보드에 접근 권한을 추가하고 결과를 반환
-  //   const permissionData = await Auths.create({
-  //     boardId,
-  //     userId,
-  //     loginId,
-  //     authId,
-  //     creatorUserId,
-  //   });
-  //   return permissionData;
-  // };
-
-  grantPermissionAndUpdate = async (boardId, userIdToGrant, authId, creatorUserId) => {
+  // 보드 권한 설정
+  grantPermission = async (boardId, authId) => {
     // 보드에 접근 권한을 추가하고 결과를 반환
-    const permissionData = await Auths.create({
+    await Auths.create({
       boardId,
-      userId: userIdToGrant,
-      authId: authId,
-      creatorUserId,
+      authId,
     });
-
-    // 보드 업데이트 로직 수행
-    const updatedBoard = await Boards.update(
-      {
-        userId: userIdToGrant,
-      },
-      {
-        where: { boardId },
-      }
-    );
-
-    return {
-      permissionData,
-      updatedBoard,
-    };
   };
 }
 
