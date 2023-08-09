@@ -28,10 +28,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
+      position: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
       columnName: {
         allowNull: false,
         type: DataTypes.STRING,
       },
+
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
