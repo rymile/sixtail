@@ -5,7 +5,7 @@ const usersRouter = require('./usersRoute');
 router.use('/', usersRouter);
 
 const boardsRouter = require('./boardRoute');
-router.use('/', boardsRouter);
+router.use('/board', boardsRouter);
 
 // const authRouter = require('./authRoute');
 // router.use('/', authRouter);
