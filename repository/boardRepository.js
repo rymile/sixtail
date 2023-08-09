@@ -40,29 +40,48 @@ class BoardsRepository {
     return deletedData;
   };
 
-  //조회
-  findBoard = async (boardId) => {
+  //보드조회
+  getBoard = async (boardId) => {
     const board = await Boards.findOne({ where: { boardId } });
     return board;
   };
 
-  addBoardPermission = async (boardId, userId, loginId, authId, creatorUserId) => {
+  // grantBoardPermission = async (boardId, userId, loginId, authId, creatorUserId) => {
+  //   // 보드에 접근 권한을 추가하고 결과를 반환
+  //   const permissionData = await Auths.create({
+  //     boardId,
+  //     userId,
+  //     loginId,
+  //     authId,
+  //     creatorUserId,
+  //   });
+  //   return permissionData;
+  // };
+
+  grantPermissionAndUpdate = async (boardId, userIdToGrant, authId, creatorUserId) => {
     // 보드에 접근 권한을 추가하고 결과를 반환
     const permissionData = await Auths.create({
       boardId,
-      userId,
-      loginId,
-      authId,
-      creatorUserId, // 보드를 생성한 사용자의 ID를 추가로 저장
+      userId: userIdToGrant,
+      authId: authId,
+      creatorUserId,
     });
-    return permissionData;
+
+    // 보드 업데이트 로직 수행
+    const updatedBoard = await Boards.update(
+      {
+        userId: userIdToGrant,
+      },
+      {
+        where: { boardId },
+      }
+    );
+
+    return {
+      permissionData,
+      updatedBoard,
+    };
   };
-  async getBoardPermission(boardId, userId) {
-    const permission = await Auths.findOne({
-      where: { boardId, userId },
-    });
-    return permission;
-  }
 }
 
 module.exports = BoardsRepository;

@@ -10,8 +10,8 @@ router.use('/', boardsRouter);
 // const authRouter = require('./authRoute');
 // router.use('/', authRouter);
 
-// const columnsRouter = require('./columnRoute');
-// router.use('/', columnsRouter);
+const columnsRouter = require('./columnRoute');
+router.use('/', columnsRouter);
 
 // const cardManageRouter = require('./cardManageRoute');
 // router.use('/', cardManageRouter);
