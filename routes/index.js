@@ -13,7 +13,7 @@ router.use('/', boardsRouter);
 // const columnsRouter = require('./columnRoute');
 // router.use('/', columnsRouter);
 
-// const cardManagesRouter = require('./cardManagesRoute');
-// router.use('/', cardManagesRouter);
+// const cardManageRouter = require('./cardManageRoute');
+// router.use('/', cardManageRouter);
 
 module.exports = router;
