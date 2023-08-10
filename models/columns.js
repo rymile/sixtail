@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       position: {
         allowNull: false,
-        type: DataTypes.INTEGER,
+        type: DataTypes.ENUM('A', 'B', 'C', 'D', 'E'),
+        defaultValue: 'A', // 기본값으로 'A'를 선택
       },
       columnName: {
         allowNull: false,
