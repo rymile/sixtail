@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sixtail todoList</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css" />
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/main.css" />
   </head>
@@ -32,18 +33,55 @@
       <!-- main -->
       <main id="container" class="main">
         <section id="content">
-          <div class="work">
+          <div class="work w1">
             <div class="inner">
+              <!-- sideBar -->
+              <div class="sideBar">
+                <div class="menu">
+                  <div class="hamburger">
+                    <a href="#">
+                      <i class="xi-bars"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="profile">
+                  <img src="./images/sixtail.webp" alt="식스테일" />
+                  <h3>Node.js 6조 - SixTail</h3>
+                  <p>todoList</p>
+                </div>
+
+                <div class="invite">
+                  <button class="inviteBtn" onclick="">초대하기</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="work w2">
+            <div class="inner">
+              <!-- board -->
               <ul class="board">
                 <li>
                   <a href="#">
-                    <h3>to do</h3>
+                    <h3>To Do</h3>
                     <p>content</p>
                   </a>
                   <button class="addBtn">+ Add a card</button>
                 </li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
+                <li>
+                  <a href="#">
+                    <h3>Doing</h3>
+                    <p>content</p>
+                  </a>
+                  <button class="addBtn">+ Add a card</button>
+                </li>
+                <li>
+                  <a href="#">
+                    <h3>Done</h3>
+                    <p>content</p>
+                  </a>
+                  <button class="addBtn">+ Add a card</button>
+                </li>
               </ul>
             </div>
           </div>
@@ -59,6 +97,6 @@
     </div>
 
     <!-- script part -->
-    <script src="./main.js"></script>
+    <script src="./js/main.js"></script>
   </body>
 </html>
