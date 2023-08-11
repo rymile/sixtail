@@ -49,9 +49,9 @@ class ColumnController {
 
     const userId = res.locals.user;
 
-    const { columnId } = req.params;
+    const { columnId, boardId } = req.params;
 
-    const { status, message } = await this.columnService.patchCtrColumn(position, userId, columnId);
+    const { status, message } = await this.columnService.patchCtrColumn(position, userId, columnId, boardId);
 
     res.status(status).json(message);
   };
