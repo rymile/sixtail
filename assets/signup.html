@@ -2,28 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- axios -->
+    <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>로그인</title>
+    <title>회원가입</title>
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/user.css" />
 
     <!-- axios -->
     <script src="http://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
+
   <body>
     <div id="wrap">
       <form class="login">
-        <h2>로그인</h2>
+        <h2>회원가입</h2>
         <div class="login login_id">
           <h4>loginId</h4>
-          <input type="text" name="loginId" id="loginId" placeholder="아이디 입력" />
+          <input type="text" name="loginId" id="loginId" placeholder="아이디" />
         </div>
         <div class="login login_pw">
           <h4>Password</h4>
-          <input type="password" name="pw" id="password" placeholder="비밀번호 입력" />
+          <input type="password" name="password" id="password" placeholder="비밀번호" />
+        </div>
+        <div class="login login_confirm">
+          <h4>Password Confirm</h4>
+          <input type="password" name="password" id="passwordConfirm" placeholder="비밀번호 재입력" />
+        </div>
+        <div class="login login_nickname">
+          <h4>nickname</h4>
+          <input type="text" name="nickname" id="nickname" placeholder="닉네임" />
         </div>
         <div class="submit">
-          <input type="button" class="btn" value="로그인하기" onclick="login();" />
+          <input type="button" class="btn" value="회원가입 완료" onclick="signUp();" />
         </div>
       </form>
     </div>

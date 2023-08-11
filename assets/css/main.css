@@ -157,15 +157,15 @@
 .main .board li {
     border: 1px solid #ededed;
     border-radius: 10px;
-    width: 300px;
-    height: 300px;
+    width: 320px;
+    height: 360px;
     background: #ededed;
     transition: 0.4s;
     margin-left: 20px;
     padding: 5px;
 }
 .main .board li:hover {
-    transform: scale(1.1);
+    cursor: pointer;
 }
 .main .board li a h3 {
     text-align: left;
@@ -183,7 +183,7 @@
 .main .board li .addBtn {
     margin-top: 10px;
     background: #ededed;
-    width: 290px;
+    width: 320px;
     border: none;
     transition: 0.3s;
 }
@@ -191,4 +191,23 @@
     background: #999;
     border: 1px solid #999;
     border-radius: 7px;
+}
+.main .board li .popup {
+    margin-top: 10px;
+    /* display: none; */
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: #333;
+}
+.main .board li .popup .close {
+    display: block;
+    text-align: right;
+    font-weight: 600;
+}
+.main .board li .popup h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 7px;
 }
