@@ -2,27 +2,31 @@
 
 // class cardManageRepository {
 //   //생성
-//   createCard = async (cardName, cardContent, cardWorker, cardDeadline) => {
+//   createCardManage = async (cardName, cardContent, cardWorker, cardDeadline) => {
 //     const createCardData = await Cards.create({
 //       cardName,
 //       cardContent,
+//       cardWorker,
+//       cardDeadline,
 //       userId,
 //     });
 //     return createCardData;
 //   };
 
 //   //수정
-//   putCard = async (boardId, boardTitle, boardContent) => {
-//     const modifyData = await Boards.update(
+//   putCard = async (cardId, cardName, cardContent, cardWorker, cardDeadline) => {
+//     const modifyData = await Cards.update(
 //       // 수정할 데이터 정의
 //       {
-//         boardTitle,
-//         boardContent,
+//         cardName,
+//         cardContent,
+//         cardWorker,
+//         cardDeadline,
 //       },
-//       //수정할 데이터는 boardId로 한번 더 조회하여 해당 boardId일 경우에만 수정을 진행합니다.
+//       //수정할 데이터는 cardId로 한번 더 조회하여 해당 cardId일 경우에만 수정을 진행합니다.
 //       {
 //         where: {
-//           boardId,
+//           cardId,
 //         },
 //       }
 //     );
@@ -30,10 +34,10 @@
 //   };
 
 //   //삭제
-//   deleteCard = async (boardId) => {
-//     const deletedData = await Boards.destroy({
+//   deleteCard = async (cardId) => {
+//     const deletedData = await Cards.destroy({
 //       where: {
-//         boardId: boardId,
+//         cardId: cardId,
 //       },
 //     });
 
@@ -41,28 +45,10 @@
 //   };
 
 //   //조회
-//   findBoard = async (boardId) => {
-//     const board = await Boards.findOne({ where: { boardId } });
-//     return board;
+//   findBoard = async (cardId) => {
+//     const card = await Cards.findOne({ where: { cardId } });
+//     return card;
 //   };
-
-//   addBoardPermission = async (boardId, userId, loginId, authId, creatorUserId) => {
-//     // 보드에 접근 권한을 추가하고 결과를 반환
-//     const permissionData = await Auths.create({
-//       boardId,
-//       userId,
-//       loginId,
-//       authId,
-//       creatorUserId, // 보드를 생성한 사용자의 ID를 추가로 저장
-//     });
-//     return permissionData;
-//   };
-//   async getBoardPermission(boardId, userId) {
-//     const permission = await Auths.findOne({
-//       where: { boardId, userId },
-//     });
-//     return permission;
-//   }
 // }
 
 // module.exports = cardManageRepository;

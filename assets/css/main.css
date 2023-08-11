@@ -63,14 +63,98 @@
     transform: translateY(4px);
 }
 
+/* ============================================== */
+
 /* main */
-.main .work {}
-.main .work .inner {}
-.main .work .board {
-    display: flex;
+.main {
+    position: relative;
+}
+/* sideBar */
+/* sideBar - active */
+.main.active .sideBar { 
+    left: -250px;
+}
+.main.active .sideBar .menu { 
+    position: absolute;
+    left: 70px;
+}
+.main.active .work.w2 { 
+    position: absolute;
+    left: -200px;
+}
+
+/* sideBar Hamburger Menu */
+.sideBar .menu {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+    transition: all 0.5s ease;
+}
+.sideBar .menu .hamburger a { 
+    font-size: 30px; 
+    color: #fff;
+}
+
+.sideBar {
+    background : #444;
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 250px;
+    height: 100%; 
+    padding: 20px 0; 
+    transition: all 0.5s ease; 
+    z-index: 0;
+}
+.sideBar .profile {
+    margin-bottom: 30px;
     text-align: center;
 }
-.main .work .board li {
+.sideBar .profile img {
+    display: block;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.sideBar .profile h3 { color: #fff; margin: 10px 0 5px;}
+.sideBar .profile p { color: rgb(206,240,253); font-size: 14px;}
+
+/* sideBar sideWrap */
+.sideBar .fmWrap {
+    text-align: center;
+}
+.sideBar .fmWrap .fm {
+    background: #fff;
+    font-weight: 600;
+    padding: 5px;   
+}
+.sideBar .invite {
+    text-align: center;
+}
+.sideBar .invite .inviteBtn {
+    width: 150px;
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.sideBar .invite .inviteBtn:hover {
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    color: #333;
+}
+
+/* board start */
+.main .board {
+    position: absolute;
+    left: 250px;
+
+    display: flex;
+    margin: 0 auto;
+    transition: all 0.5s ease;
+}
+.main .board li {
     border: 1px solid #ededed;
     border-radius: 10px;
     width: 300px;
@@ -80,29 +164,30 @@
     margin-left: 20px;
     padding: 5px;
 }
-.main .work .board li:hover {
+.main .board li:hover {
     transform: scale(1.1);
 }
-.main .work .board li a h3 {
+.main .board li a h3 {
     text-align: left;
     margin-left: 10px;
     margin-bottom: 20px;
     font-size: 20px;
     font-weight: 600;
 }
-.main .work .board li a p {
-    border: 1px solid #fff;
+.main .board li a p {
+    border: 1px solid #ededed;
     border-radius: 10px;
     background: #fff;
+    padding-left: 10px;
 }
-.main .work .board li .addBtn {
+.main .board li .addBtn {
     margin-top: 10px;
     background: #ededed;
     width: 290px;
     border: none;
     transition: 0.3s;
 }
-.main .work .board li .addBtn:hover {
+.main .board li .addBtn:hover {
     background: #999;
     border: 1px solid #999;
     border-radius: 7px;

@@ -5,9 +5,9 @@
 // const CardManagesController = require('../controller/cardManageController');
 // const cardManagesController = new CardManagesController();
 
-// router.post('/cardManage', cardManagesController.createCard);
-// router.get('/cardManage/:cardId', authMiddleware, cardManagesController.getCard);
-// router.put('/cardManage/:cardId', authMiddleware, cardManagesController.updateCard);
-// router.delete('/cardManage/:cardId', authMiddleware, cardManagesController.deleteCard);
+// router.post('/cardManage', cardManagesController.createCardManage);
+// router.get('/cardManage/:cardId', authMiddleware, cardManagesController.getCardManage);
+// router.put('/cardManage/:cardId', authMiddleware, cardManagesController.updateCardManage);
+// router.delete('/cardManage/:cardId', authMiddleware, cardManagesController.deleteCardManage);
 
 // module.exports = router;
