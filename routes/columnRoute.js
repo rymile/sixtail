@@ -11,6 +11,6 @@ router.put('/column/:columnId', authMiddleware, columnController.put);
 
 router.delete('/column/:columnId', authMiddleware, columnController.delete);
 
-router.patch('/column/:columnId/move', authMiddleware, columnController.patch);
+router.patch('/column/:boardId/move/:columnId', authMiddleware, columnController.patch);
 
 module.exports = router;

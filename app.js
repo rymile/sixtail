@@ -9,7 +9,7 @@ const router = require('./routes');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/api', router);
+app.use('/', router);
 
 const path = require('path');
 
