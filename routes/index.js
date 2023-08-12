@@ -11,9 +11,9 @@ router.use('/board', boardsRouter);
 // router.use('/', authRouter);
 
 const columnsRouter = require('./columnRoute');
-router.use('/', columnsRouter);
+router.use('/column', columnsRouter);
 
-// const cardManageRouter = require('./cardManageRoute');
-// router.use('/', cardManageRouter);
+const cardManageRouter = require('./cardManageRoute');
+router.use('/cardManage', cardManageRouter);
 
 module.exports = router;

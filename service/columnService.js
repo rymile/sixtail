@@ -3,6 +3,18 @@ const ColumnRepository = require('../repository/columnRepository.js');
 class ColumnService {
   columnRepository = new ColumnRepository();
 
+  getcolumn = async (columnId) => {
+    // const auth = await this.columnRepository.getAuth(userId, columnId);
+    // if (!auth) {
+    //   throw new ApiError('보드를 조회할 권한이 없습니다.', 411);
+    // }
+    const column = await this.columnRepository.getcolumn(columnId);
+    if (!column) {
+      throw new ApiError('보드가 없습니다', 411);
+    }
+    return column;
+  };
+
   // 컬럼 생성
   createCtrColumn = async (columnName, position, boardId, userId) => {
     try {
