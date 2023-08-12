@@ -1,54 +1,86 @@
-// const { Cards } = require('../models');
+const { CardManages, sequelize } = require('../models');
 
-// class cardManageRepository {
-//   //생성
-//   createCardManage = async (cardName, cardContent, cardWorker, cardDeadline) => {
-//     const createCardData = await Cards.create({
-//       cardName,
-//       cardContent,
-//       cardWorker,
-//       cardDeadline,
-//       userId,
-//     });
-//     return createCardData;
-//   };
+class cardManageRepository {
+  findgetColumn = async (columnId) => {
+    const findcolumn = await CardManages.findAll({ where: { columnId } });
+    return findcolumn;
+  };
 
-//   //수정
-//   putCard = async (cardId, cardName, cardContent, cardWorker, cardDeadline) => {
-//     const modifyData = await Cards.update(
-//       // 수정할 데이터 정의
-//       {
-//         cardName,
-//         cardContent,
-//         cardWorker,
-//         cardDeadline,
-//       },
-//       //수정할 데이터는 cardId로 한번 더 조회하여 해당 cardId일 경우에만 수정을 진행합니다.
-//       {
-//         where: {
-//           cardId,
-//         },
-//       }
-//     );
-//     return modifyData;
-//   };
+  //생성
+  createCard = async (cardName, cardContent, cardWorker, cardDeadline, columnId, userId) => {
+    const createCard = await CardManages.create({
+      cardName,
+      cardContent,
+      cardWorker,
+      cardDeadline,
+      columnId,
+      userId,
+    });
+    return createCard;
+  };
 
-//   //삭제
-//   deleteCard = async (cardId) => {
-//     const deletedData = await Cards.destroy({
-//       where: {
-//         cardId: cardId,
-//       },
-//     });
+  //수정
+  putCardManage = async (cardName, cardContent, cardWorker, cardDeadline, cardId, userId) => {
+    const t = await sequelize.transaction();
 
-//     return deletedData;
-//   };
+    try {
+      const updatedCard = await CardManages.update(
+        {
+          cardName,
+          cardContent,
+          cardWorker,
+          cardDeadline,
+        },
+        {
+          where: { cardId },
+          transaction: t,
+        }
+      );
 
-//   //조회
-//   findBoard = async (cardId) => {
-//     const card = await Cards.findOne({ where: { cardId } });
-//     return card;
-//   };
-// }
+      await t.commit();
+      return updatedCard;
+    } catch (error) {
+      await t.rollback();
+      throw error;
+    }
+  };
 
-// module.exports = cardManageRepository;
+  //삭제
+  deleteServiceCardManage = async (cardId) => {
+    const deletedData = await CardManages.destroy({
+      where: {
+        cardId: { cardId },
+      },
+    });
+
+    return deletedData;
+  };
+
+  //조회
+  findBoard = async (cardId) => {
+    const card = await CardManages.findOne({ where: { cardId } });
+    return card;
+  };
+
+  //카드 이동
+  patchServiceCardManage = async (position, userId, columnId, cardId) => {
+    const transaction = await Columns.sequelize.transaction();
+    try {
+      const cards = await CardManages.findAll({ where: { cardId } });
+      for (let i = 0; i < cards.length - 1; i++) {
+        const tempPosition = cards[i].position;
+        cards[i].position = cards[i + 1].position;
+        cards[i + 1].position = tempPosition;
+
+        await cards[i].save();
+        await cards[i + 1].save();
+      }
+
+      await transaction.commit();
+    } catch (error) {
+      await transaction.rollback();
+      throw error;
+    }
+  };
+}
+module.exports = cardManageRepository;

@@ -3,6 +3,12 @@ const { Op } = require('sequelize');
 const POSITION = { A: 1, B: 2, C: 3, D: 4, E: 5 };
 
 class ColumnRepository {
+  //보드에서 컬럼 조회
+  getcolumn = async (boardId) => {
+    const board = await Columns.findOne({ where: { boardId } });
+    return board;
+  };
+
   // 컬럼 생성 (트랜잭션 포함)
   createServiceColumn = async (columnName, position, boardId, userId) => {
     const t = await sequelize.transaction();

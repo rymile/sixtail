@@ -5,6 +5,20 @@ class ColumnController {
     this.columnService = new ColumnService();
   }
 
+  // 컬럼 조회
+  getcolumn = async (req, res) => {
+    // const userId = res.locals.user
+    const { columnId } = req.params;
+
+    try {
+      const getcolumn = await this.columnService.getcolumn(columnId);
+      return res.status(200).json({ data: getcolumn });
+    } catch (err) {
+      console.log(err);
+      return res.status(err.status || 500).json({ message: err.message });
+    }
+  };
+
   // 컬럼 생성
   post = async (req, res, next) => {
     const { columnName, position } = req.body;
