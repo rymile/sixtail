@@ -16,3 +16,30 @@ function logout() {
     console.log(error);
   }
 }
+
+// 보드 생성
+function boardCreate() {
+
+}
+
+// add a Card
+function addCard(cardId, cardContent) {
+  const popup = document.getElementById("cardAddPopup");
+  const form = document.getElementById("cardForm");
+
+  // 팝업에 정보 채우기!
+  document.getElementById("cardId").value = cardId;
+  document.getElementById("cardContent").value = cardContent;
+
+  popup.style.display = "block";
+}
+function closePopup() {
+  const popup = document.getElementById("cardAddPopup");
+  popup.style.display = "none";
+}
+
+// 댓글 페이지로 이동!
+
+
+
+// 보드 li 이동

@@ -30,7 +30,19 @@
               <li><a href="#">회원탈퇴</a></li>
             </ul>
           </nav>
-          <button class="headerBtn">보드생성</button>
+
+          <ul class="boardul">
+            <li><a href="#cardCreate">보드생성</a></li>
+            <li><a href="#columnCreate">컬럼생성</a></li>
+          </ul>
+          <div class="cardCreate" id="cardCreate" style="display: none;">
+            <div class="inner">
+              <p class="btitle"></p>
+              <p class="bcontent">팝업 안내문구 입니다.</p>
+              <button class="btn_close" onclick="boardCreate();">보드 생성</button>
+              <button class="btn_close">닫기</button>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -57,6 +69,17 @@
                 <div class="invite">
                   <button class="inviteBtn" onclick="">초대하기</button>
                 </div>
+
+                <div class="border"></div>
+
+                <div class="waitWrap">
+                  <ul class="boardWait">
+                    <li id="boardTitle"><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -68,19 +91,19 @@
                 <li>
                   <a href="#">
                     <h3>To Do</h3>
-                    <p>content</p>
+                    <p onclick="location.href='cmt.html'">content</p>
                   </a>
-                  <button class="addBtn">+ Add a card</button>
-                  <div id="menuEditPopup" class="popup">
+                  <button class="addBtn" onclick="addCard();">+ Add a card</button>
+                  <div id="cardAddPopup" class="popup">
                     <div class="popupContent">
                       <span class="close" onclick="closePopup()" style="cursor: pointer">&times;</span>
-                      <h2>todo 수정하기</h2>
-                      <form id="editMenuForm">
-                        <input type="hidden" id="menuId" />
-                        <label for="menuName">내용:</label>
-                        <input type="text" id="menuName" required />
+                      <h2>카드 생성</h2>
+                      <form id="cardForm">
+                        <input type="hidden" id="cardId" />
+                        <label for="cardContent">내용:</label>
+                        <input type="text" id="cardContent" required />
 
-                        <input type="button" value="카드 입력" class="changeBtn" onclick="menuChange();" />
+                        <input type="button" value="카드 입력" class="changeBtn" onclick="addCard();" />
                       </form>
                     </div>
                   </div>
