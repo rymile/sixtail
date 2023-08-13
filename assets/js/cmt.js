@@ -1,9 +1,9 @@
 function cmt(cmtContent) {
     const data = {
-        cmt: $('#cmtContent').val(),
+        cmt: $('#cardCmt').val(),
       };
       axios
-        .post('http://localhost:3000/api/cmt', data)
+        .post('http://localhost:3000/api/cardcmt/:cardId', data)
         .then((response) => {
           console.log(data);
           alert('댓글이 등록되었습니다');
