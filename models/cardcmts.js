@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
+      nickname: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
       cardCmt: {
         allowNull: false,
         type: DataTypes.STRING,
