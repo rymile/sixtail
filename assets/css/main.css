@@ -42,33 +42,27 @@
     border-radius: 7px;
     padding: 3px;
 }
-#header .boardul {
+
+#header .topMenu {
     position: absolute;
     top: 9px;
     left: 130px;
     display: flex; 
 }
-#header .boardul li {
+#header .topMenu .btn {
     border-radius: 7px;
     box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
-    color: #fff;
+    color: #333;
     transition: 0.3s;
     background: #fff;
     padding: 2px;
 }
-#header .boardul li:last-child {
-    margin-left: 10px;
-}
-#header .boardul .li a {
-    
-    
-}
-#header .boardul .li:hover a {
+#header .topMenu .btn:hover {
     background: #999;
     border-radius: 7px;
     color: #fff;
 }
-#header li a:active {
+#header .topMenu .btn:active {
     box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
     transform: translateY(4px);
 }

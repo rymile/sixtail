@@ -2,6 +2,14 @@ const { Boards, Auths } = require('../models');
 const { sequelize } = require('../models');
 
 class BoardsRepository {
+  findAllBoard = async () => {
+    // ORM인 Sequelize에서 Posts 모델의 findAll 메소드를 사용해 데이터를 요청합니다.
+    const boards = await Boards.findAll();
+    // 요청한 데이터를 리턴
+    return boards;
+  };
+
+
   //생성
   createBoard = async (boardTitle, boardContent, userId) => {
     try {
@@ -62,7 +70,7 @@ class BoardsRepository {
 
   //보드조회
   getBoardAuth = async (boardId) => {
-    const board = await Boards.findOne({ where: { boardId } });
+    const board = await Boards.findAll({ where: { boardId } });
     return board;
   };
 

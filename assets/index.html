@@ -31,16 +31,16 @@
             </ul>
           </nav>
 
-          <ul class="boardul">
-            <li><a href="#cardCreate">보드생성</a></li>
-            <li><a href="#columnCreate">컬럼생성</a></li>
-          </ul>
+          <!-- top menu -->
+          <div class="topMenu">
+            <button class="boardCreate btn" onclick="boardCreate();">보드생성</button>
+            <button class="columnCreate btn" onclick="columnCreate();">컬럼생성</button>
+          </div>
           <div class="cardCreate" id="cardCreate" style="display: none;">
             <div class="inner">
-              <p class="btitle"></p>
-              <p class="bcontent">팝업 안내문구 입니다.</p>
-              <button class="btn_close" onclick="boardCreate();">보드 생성</button>
-              <button class="btn_close">닫기</button>
+              <p class="btitle" id="columnId">컬럼제목</p>
+              <p class="bcontent" id="columnContent">컬럼내용</p>
+              <button class="btn_close" onclick="boardClose();">닫기</button>
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@
           <div class="work w2">
             <div class="inner">
               <!-- board -->
-              <ul class="board">
+              <ul class="board" id="board">
                 <li>
                   <a href="#">
                     <h3>To Do</h3>
@@ -122,6 +122,13 @@
                   </a>
                   <button class="addBtn">+ Add a card</button>
                 </li>
+                <!-- <li id="boardli" style="display: flex;">
+                  <a href="#">
+                    <h3 class="boardTitle" id="boardTitle"></h3>
+                    <p class="boardContent" id="boardContent"></p>
+                  </a>
+                  <button class="addBtn">+ Add a card</button>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -142,6 +149,7 @@
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
       crossorigin="anonymous"
     ></script>
-    <script src="./js/main.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/board.js"></script>
   </body>
 </html>

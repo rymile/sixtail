@@ -3,6 +3,15 @@ const BoardsService = require('../service/boardService');
 class BoardsController {
   boardsService = new BoardsService();
 
+  getBoard = async (req, res, next) => {
+    // 서비스 로직에서 findAllPost 실행
+    const board = await this.boardsService.findAllBoard();
+    console.log("=>",board)
+    // 조회한 결과값을 결과창에 출력
+    res.status(200).json({ data: board });
+  };
+
+
   //post기능
   createBoard = async (req, res) => {
     const { boardTitle, boardContent } = req.body;

@@ -6,7 +6,7 @@ class UsersController {
   signupUser = async (req, res) => {
     try {
       const { loginId, password, passwordConfirm, nickname } = req.body;
-
+   console.log("회원가입=>",req.body)
       if (!loginId || !password || !nickname) {
         return res.status(412).json({ message: '입력되지 않은 정보가 있습니다.' });
       }

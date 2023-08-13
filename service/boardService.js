@@ -4,8 +4,28 @@ const ApiError = require('../apierror');
 class BoardsService {
   boardsRepository = new BoardsRepository();
 
+  // 보드 조회
+  findAllBoard = async () => {
+    const allBoard = await this.boardsRepository.findAllBoard();
+
+    // 조회 후 생성날짜(createdAt)을 기준으로 정렬함
+    // sort((a,b) => b - a)
+    allBoard.sort((a, b) => {
+      return b.createdAt - a.createdAt;
+    });
+
+    // 조회한 결과에서 다음의 변수들을 반복해서 조회한다.
+    return allBoard.map((board) => {
+      return {
+        boardTitle: board.boardTitle, // postId: 게시글의 postId
+        boardContent: board.boardContent, // title: 게시글의 title
+      };
+    });
+  };
+
   //보드 생성
   createBoard = async (boardTitle, boardContent, userId) => {
+    
     if (!boardContent || !boardTitle || !userId) {
       throw new ApiError('보드 제목, 내용, 사용자 ID를 입력해야 합니다.', 411);
     }

@@ -10,13 +10,13 @@ class UserService {
     const idReg = /^[a-zA-Z0-9]{3,}$/; //loginId 형식검사
     const passwordReg = /^.{4,}$/; //password 형식 검사
     if (!idReg.test(loginId)) {
-      throw new ApiError('아이디 형식이 일치하지 않습니다.', 412);
+      throw new ApiError('아이디 형식이 일치하지 않습니다.', 410);
     }
     if (!passwordReg.test(password)) {
-      throw new ApiError('패스워드 형식이 일치하지 않습니다.', 412);
+      throw new ApiError('패스워드 형식이 일치하지 않습니다.', 411);
     }
     if (password.includes(loginId)) {
-      throw new ApiError('패스워드에 아이디가 포함되어 있습니다.', 412);
+      throw new ApiError('패스워드에 아이디가 포함되어 있습니다.', 413);
     }
 
     const isExistUser = await this.userRepository.findUser(loginId);
@@ -30,6 +30,7 @@ class UserService {
   };
   // 로그인 API
   loginUser = async (loginId, password) => {
+    
     const user = await this.userRepository.findUser(loginId);
     if (!user) {
       throw new ApiError('닉네임 또는 패스워드를 확인해주세요.', 412);
