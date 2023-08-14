@@ -18,7 +18,7 @@ https://jh-healing-place.tistory.com/124
 보드 상세조회: <GET> localhost:3000/api/board/:boardId <br>
 보드 권한 설정 <POST> localhost:3000/api/board/auth/:boardId
 
-<h2컬럼</h2>
+<h2>컬럼</h2>
 컬럼 생성: <POST> localhost:3000/api/column/:boardId <br>
 컬럼 수정: <PUT> localhost:3000/api/column/:columnId <br>
 컬럼 삭제: <DELETE> localhost:3000/api/column/:columnId <br>
